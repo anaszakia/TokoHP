@@ -47,8 +47,21 @@ class TransaksiResource extends Resource
                     ->disabled()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('status')
+                    ->label('Status Pembayaran')
                     ->disabled()
                     ->required(),
+                Forms\Components\TextInput::make('no_resi')
+                    ->label('Resi'),
+                Forms\Components\Select::make('status_pengiriman')
+                    ->label('Status Pengiriman')
+                    ->options([
+                        'menunggu' => 'Menunggu',
+                        'dikemas' => 'Dikemas',
+                        'dikirim' => 'Dikirim',
+                        'selesai' => 'Selesai',
+                    ])
+                    ->searchable()
+                    ->disabled(fn ($record) => $record->status_pengiriman === 'selesai'),
             ]);
     }
 
@@ -62,6 +75,15 @@ class TransaksiResource extends Resource
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('user.alamat_lengkap')
+                    ->label('Alamat Lengkap')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('user.no_hp')
+                    ->label('Nomor HP/WA')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('user.kode_pos')
+                    ->label('Kode Pos')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('produk.nama')
                     ->numeric()
                     ->sortable(),
@@ -74,7 +96,12 @@ class TransaksiResource extends Resource
                 Tables\Columns\TextColumn::make('total_bayar')
                     ->label('Total Bayar')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('status')
+                    ->label('Status Pembayaran'),
+                Tables\Columns\TextColumn::make('no_resi')
+                    ->label('Resi'),
+                Tables\Columns\TextColumn::make('status_pengiriman')
+                    ->label('Status Pengiriman'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

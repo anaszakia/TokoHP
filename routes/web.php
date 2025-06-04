@@ -3,12 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DebugController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\TransaksiController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('beranda');
 Route::get('/produk', [ProductController::class, 'index'])->name('produk.index');
@@ -44,6 +46,13 @@ Route::middleware(['auth'])->group(function () {
 
     //riwayat
     Route::get('/riwayat-transaksi', [RiwayatController::class, 'index'])->name('riwayat.index');
+
+    //invoice
+    // Route::get('/invoice/{id}', [TransaksiController::class, 'invoice'])->name('invoice.show');
+    // Route::get('/invoice/download/{id}', [TransaksiController::class, 'downloadInvoice'])->name('invoice.download'); 
+
+Route::get('/invoice/{id}/download', [InvoiceController::class, 'download'])->name('invoice.download');
+
 });
 
 

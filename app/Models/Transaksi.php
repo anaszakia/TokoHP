@@ -17,7 +17,9 @@ class Transaksi extends Model
         'qty',
         'ongkir',
         'total_bayar',
-        'status'
+        'status',
+        'no_resi',
+        'status_pengiriman'
     ];
 
     public function user()
